@@ -15,6 +15,7 @@ class ApiServices {
       final List<dynamic> parsedJson = json.decode(response.body);
       return parsedJson;
     } else {
+      print(response.statusCode);
       throw Exception('Failed to load repositories');
     }
   }

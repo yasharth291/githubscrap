@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
 import '../services/api_services.dart';
@@ -14,11 +15,16 @@ class HomeScreenState extends State<HomeScreen> {
   Future<void> fetchRepositories() async {
     try {
       final newRepositories = await ApiServices.fetchRepositories();
+      if (kDebugMode) {
+        print(newRepositories);
+      }
       setState(() {
         repositories = List<Map<String, dynamic>>.from(newRepositories);
       });
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
     }
   }
 
